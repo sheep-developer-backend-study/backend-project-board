@@ -1,5 +1,10 @@
 ## 백엔드 프로젝트 #1 게시판 
 
+### 학습 방법
+1. branch 생성: master -> {githubName}/{수업주제}-study e.g. sheep1500/backend-project-init-study
+2. 해당 브랜치로 checkout 후 학습 진행
+3. 학습 종료 후 실습 브랜치 생성 후 반복 연습, 실습 브랜치: {githubName}/{수업주제} 
+
 ### 목차
 #### 1.  Github 프로젝트 환경 설정
 - 스프링 부트 프로젝트 생성
