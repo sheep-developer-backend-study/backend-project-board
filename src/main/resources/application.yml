@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:backend-study
+    username: myuser
+    password: 1234
+  h2:
+    console:
+      enabled: true
+      path: /h3-console
+server:
+  port: 2020
