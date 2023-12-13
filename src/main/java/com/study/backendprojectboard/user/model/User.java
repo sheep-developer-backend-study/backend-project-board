@@ -5,7 +5,9 @@ import lombok.*;
 
 
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "T_USER")
 public class User {
@@ -13,7 +15,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long id;
+    private Long userId;
 
     @Column(name = "NAME", nullable = false, length = 30)
     private String name;
