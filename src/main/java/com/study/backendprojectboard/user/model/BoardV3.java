@@ -33,8 +33,4 @@ public class BoardV3 {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
-    List<Comment> commentList;
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+    href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+    <title>게시글 목록</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>글 목록</h2>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성시각</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="article : ${articles}">
+            <td><a th:text="${article.id}" th:href="@{/board/{id}(id=${article.id})}" href="articleView.html">#</a></td>
+            <td><a th:text="${article.title}" th:href="@{/board/{id}(id=${article.id})}" href="articleView.html">글 제목</a></td>
+
+            <td>
+                <span th:if="${article.writer} != null" th:text="${article.getWriterName()}">(글 작성자)</span>
+                <span th:unless="${article.writer} != null" th:text="'작성자 정보 없음'">(글 작성자)</span>
+            </td>
+
+            <td th:text="${article.getDateTimeFormat()}">작성시각</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="button" onclick="location.href='addArticleForm.html'"
+            th:onclick="|location.href='@{/board/add}'|"
+            class="btn btn-primary mb-2">글 작성</button>
+    <button type="button" onclick="location.href='../index.html'"
+            th:onclick="|location.href='@{/}'|" class="btn btn-secondary mb-2">처음으로</button>
+</div>
+
+
+</body>
+
+
+</html>

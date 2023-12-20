@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+    href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+
+        .newline {
+            white-space: pre-wrap;
+        }
+    </style>
+    <title>글 열람</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="py-4 text-center">
+        <h2><span th:text="${article.title}">(글 제목)</span></h2>
+    </div>
+
+    <div class="pb-2 d-flex justify-content-between">
+        <!-- todo 로그인 세션 개발 이후 다시 변경-->
+        <span th:if="${article.writer} != null" th:text="${article.getWriterName()}">(글 작성자)</span>
+        <span th:unless="${article.writer} != null" th:text="'작성자 정보 없음'">(글 작성자)</span>
+
+        <span th:text="${article.getDateTimeFormat()}">(작성 시각)</span>
+    </div>
+    <hr class="my-2">
+
+    <div class="newline" th:text="${article.content}">(글 내용)</div>
+
+    <hr class="py-1">
+
+    <button type="button" onclick="location.href='editArticleForm.html'"
+            th:onclick="|location.href='@{/board/{id}/edit(id=${article.id})}'|"
+            class="btn btn-primary mb-2">수정하기</button>
+    <button type="button" onclick="location.href='articleList.html'"
+            th:onclick="|location.href='@{/board}'|"
+            class="btn btn-secondary mb-2">목록으로</button>
+
+</div>
+
+
+</body>
+
+
+</html>

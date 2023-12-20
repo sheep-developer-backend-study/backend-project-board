@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>회원 목록</h2>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Password</th>
+            <th scope="col">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.userId}">#</td>
+                <td><a th:href="@{/members/edit/{id}(id=${member.userId})}" th:text="${member.email}">로그인ID<</a></td>
+                <td th:text="${member.password}">비밀번호</td>
+                <td th:text="${member.name}">닉네임</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr class="py-1 my-4">
+    <button type="button" onclick="location.href='addMemberForm.html'"
+            th:onclick="|location.href='@{/members/add}'|" class="btn btn-primary mb-2">회원 가입</button>
+    <button type="button" onclick="location.href='../login/loginForm.html'"
+            th:onclick="|location.href='@{/login}'|" class="btn btn-success mb-2">로그인</button>
+    <button type="button" onclick="location.href='../index.html'"
+            th:onclick="|location.href='@{/}'|" class="btn btn-secondary mb-2">처음으로</button>
+
+</div>
+
+
+</body>
+</html>
