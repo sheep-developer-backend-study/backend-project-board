@@ -59,6 +59,10 @@ public class UserAndBoardTest {
 
         boardRepository.save(board);
 
+        //select board_id
+        //from board
+        // where  board_id=1
+
         Optional<Board> savedBoard = boardRepository.findById(board.getBoardId());
         log.info("insert board [{}], [{}]", board, savedBoard.get());
         Assertions.assertTrue(savedBoard.get().getTitle().equals(board.getTitle()));
@@ -80,6 +84,8 @@ public class UserAndBoardTest {
             boardRepository.save(board);
         }
 
+        //select *
+        //from board
 
         List<Board> boardList = boardRepository.findAll();
         log.info("insert board list [{}]", boardList);
@@ -102,6 +108,10 @@ public class UserAndBoardTest {
             boardRepository.save(board);
         }
 
+
+        //select *
+        //from board
+        // where  titlt = title
 
         List<Board> boardList = boardRepository.findAllByTitleContains("title");
         log.info("insert board list [{}]", boardList);
@@ -169,12 +179,18 @@ public class UserAndBoardTest {
             boardRepository.save(board);
         }
 
+        // select
+        // from board
+        // where userid=1
+        // order by BoardId Desc
+
 
         List<Board> boardList = boardRepository.findAllByUserIdOrderByBoardIdDesc(userList.get(0).getUserId());
         // boardRepository.findAllByUserIdOrderByRegDateDesc();
         log.info("insert board list [{}]", boardList);
         Assertions.assertEquals(9L, boardList.get(0).getBoardId());
     }
+
 
     @Test
     public void BOARD_V2_생성() {
@@ -188,6 +204,10 @@ public class UserAndBoardTest {
         board.setUptDate(LocalDateTime.now());
 
         boardV2Repository.save(board);
+
+        //select *
+        //from boardv2
+        //where boardid =1
 
         Optional<BoardV2> savedBoard = boardV2Repository.findById(board.getBoardId());
         log.info("insert board v2 [{}], [{}]", board, savedBoard.get());
@@ -209,6 +229,9 @@ public class UserAndBoardTest {
 
             boardV2Repository.save(board);
         }
+
+        //select *
+        //from boardv2
 
 
         List<BoardV2> boardList = boardV2Repository.findAll();
@@ -232,7 +255,9 @@ public class UserAndBoardTest {
             boardV2Repository.save(board);
         }
 
-
+        //select *
+        //from boardv2
+        //where title like '%title%'
         List<BoardV2> boardList = boardV2Repository.findAllByTitleContains("title");
         log.info("insert board v2 list [{}]", boardList);
         Assertions.assertEquals(index / 2, boardList.size());
@@ -253,7 +278,9 @@ public class UserAndBoardTest {
 
             boardV2Repository.save(board);
         }
-
+        //select *
+        //from boardv2
+        //where user_id =1;
 
         List<BoardV2> boardList = boardV2Repository.findAllByUser(userList.get(0));
         log.info("insert board v2 list [{}]", boardList);
@@ -275,6 +302,10 @@ public class UserAndBoardTest {
 
             boardV2Repository.save(board);
         }
+
+        // select *
+        // from boardv2
+        // order by board_id desc
 
 
         List<BoardV2> boardList = boardV2Repository.findAllByOrderByBoardIdDesc();
@@ -298,6 +329,11 @@ public class UserAndBoardTest {
 
             boardV2Repository.save(board);
         }
+
+        // select *
+        // from boardv2
+        // where user_id =1
+        // order by board_id desc
 
 
         List<BoardV2> boardList = boardV2Repository.findAllByUserOrderByBoardIdDesc(userList.get(0));

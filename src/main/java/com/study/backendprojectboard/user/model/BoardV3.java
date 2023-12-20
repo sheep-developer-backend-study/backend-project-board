@@ -35,6 +35,6 @@ public class BoardV3 {
     private User user;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
+    @JoinColumn(name = "board_id", referencedColumnName = "board_id")
     List<Comment> commentList;
 }

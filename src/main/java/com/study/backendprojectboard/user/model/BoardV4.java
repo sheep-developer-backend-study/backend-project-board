@@ -5,29 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
-@NoArgsConstructor
 @Entity
-@Table(name = "T_COMMENT")
-public class Comment {
-
+@Table(name = "T_Board_V4")
+public class BoardV4 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
-    private Long commentId;
-
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
-    @Column(name = "content", nullable = false, length = 50)
+    @Column(name = "board_id")
+    private Long boardId;
+    @Column(name = "title",nullable = false,length = 50)
+    private String title;
+    @Column(name = "content",nullable = false,length = 50)
     private String content;
-
-    @Column(name = "reg_date")
+    @Column(name = "reg_date" )
     private LocalDateTime regDate;
-
     @Column(name = "upt_date")
     private LocalDateTime uptDate;
-
-
 }

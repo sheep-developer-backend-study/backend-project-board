@@ -3,6 +3,8 @@ package com.study.backendprojectboard.user.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @Data
 @Builder
@@ -25,4 +27,7 @@ public class User {
 
     @Column(nullable = false)
     private String email;
+
+
+
 }
