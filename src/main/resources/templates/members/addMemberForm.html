@@ -25,10 +25,10 @@
     <form action="memberList.html" th:action method="post" th:object="${member}">
         <div class="pt-3 form-group">
             <label>로그인 ID
-                <input type="text" class="form-control" th:field="*{memberId}" placeholder="ID"
+                <input type="text" class="form-control" th:field="*{email}" placeholder="ID"
                        th:errorclass="field-error">
             </label>
-            <div th:class="field-error" th:errors="*{memberId}">아이디 오류</div>
+            <div th:class="field-error" th:errors="*{email}">아이디 오류</div>
         </div>
         <div class="pt-3 form-group">
             <label>비밀번호

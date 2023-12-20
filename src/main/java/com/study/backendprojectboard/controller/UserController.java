@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("")
     public String userList(Model model) {
         log.info("userList() call");
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("members", userService.findAll());
         return "members/memberList";
     }
 

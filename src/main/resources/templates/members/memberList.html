@@ -29,8 +29,8 @@
         </thead>
         <tbody>
             <tr th:each="member : ${members}">
-                <td th:text="${member.id}">#</td>
-                <td><a th:href="@{/members/edit/{id}(id=${member.id})}" th:text="${member.memberId}">로그인ID<</a></td>
+                <td th:text="${member.userId}">#</td>
+                <td><a th:href="@{/members/edit/{id}(id=${member.userId})}" th:text="${member.email}">로그인ID<</a></td>
                 <td th:text="${member.password}">비밀번호</td>
                 <td th:text="${member.name}">닉네임</td>
             </tr>
