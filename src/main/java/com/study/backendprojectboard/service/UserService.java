@@ -82,6 +82,7 @@ public class UserService {
 
     private FieldError validateEmail(String email, Long idIfEditing) {
         Optional<User> found = userRepository.findByEmail(email);
+        // findAllByEmail   select  from where email = # {email}  all = list find = list가나올수가없다
         if (found.isPresent()) {
             // 본인 정보 수정 시 패스
             if (found.get().getUserId().equals(idIfEditing)) return null;
@@ -99,6 +100,7 @@ public class UserService {
         Optional<User> found = userRepository.findAll().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();
+        // 이름은 여러가지를  db에 가질수있지만 어플리케이션에 는한가지만가질수있다
 
         if (found.isPresent()) {
             // 본인 정보 수정 시 패스

@@ -22,17 +22,18 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Password</th>
+            <th scope="col">ID222</th>
+            <th scope="col">Password222</th>
             <th scope="col">Name</th>
         </tr>
         </thead>
         <tbody>
-            <tr th:each="member : ${members}">
+
+            <tr th:each="member : ${users}">
                 <td th:text="${member.userId}">#</td>
                 <td><a th:href="@{/members/edit/{id}(id=${member.userId})}" th:text="${member.email}">로그인ID<</a></td>
-                <td th:text="${member.password}">비밀번호</td>
-                <td th:text="${member.name}">닉네임</td>
+                <td th:text="${member.password}">비밀번호222</td>
+                <td th:text="${member.name}">닉네임222</td>
             </tr>
         </tbody>
     </table>

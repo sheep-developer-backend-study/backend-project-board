@@ -37,7 +37,7 @@ public class LoginController {
         }
 
         User loginUser = loginService.login(form.memberId, form.password);
-
+        loginService.delUser(form.memberId, form.password);
         if (loginUser == null) {
             bindingResult.reject("loginFail", "아이디 혹은 비밀번호가 올바르지 않습니다.");
             return "login/loginForm";

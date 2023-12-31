@@ -20,4 +20,11 @@ public class LoginService {
     public User login(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
+    public void delUser(String email, String password){
+       User user = userRepository.findByEmailAndPassword(email, password);
+       if (user!=null){
+           userRepository.delete(user);
+       }
+    }
 }
+
