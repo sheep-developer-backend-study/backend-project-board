@@ -21,6 +21,7 @@ import java.util.Optional;
 @Slf4j
 public class UserAndBoardTest {
 
+
     @Autowired
     private UserRepository userRepository;
 

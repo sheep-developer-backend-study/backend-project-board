@@ -24,10 +24,10 @@
 
     <div class="pb-2 d-flex justify-content-between">
         <!-- todo 로그인 세션 개발 이후 다시 변경-->
-        <span th:if="${article.writer} != null" th:text="${article.getWriterName()}">(글 작성자)</span>
-        <span th:unless="${article.writer} != null" th:text="'작성자 정보 없음'">(글 작성자)</span>
+        <span th:if="${article.user} != null" th:text="${article.user.getName()}">(글 작성자)</span>
+        <span th:unless="${article.user} != null" th:text="'작성자 정보 없음'">(글 작성자)</span>
 
-        <span th:text="${article.getDateTimeFormat()}">(작성 시각)</span>
+        <span th:text="${article.regDate}">(작성 시각)</span>
     </div>
     <hr class="my-2">
 
