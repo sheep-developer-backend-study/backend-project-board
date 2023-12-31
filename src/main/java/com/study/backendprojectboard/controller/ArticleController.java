@@ -45,7 +45,8 @@ public class ArticleController {
     public String addArticle(@ModelAttribute("article") Article article) {
         log.info("addArticle() call - POST");
         article.setRegDate(LocalDateTime.now());
-        User user = userRepository.findById(1L).orElseGet(null);
+        long id = (long) (Math.random() * 4)  + 1;
+        User user = userRepository.findById(id).orElseGet(null);
         if(user != null) {
             article.setUser(user);
         }
