@@ -1,5 +1,6 @@
 package com.study.backendprojectboard.controller;
 
+import com.study.backendprojectboard.security.service.AuthTokenService;
 import com.study.backendprojectboard.service.LoginService;
 import com.study.backendprojectboard.user.model.User;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     private final LoginService loginService;
+    private final AuthTokenService authTokenService;
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
@@ -37,17 +39,22 @@ public class LoginController {
         }
 
         User loginUser = loginService.login(form.memberId, form.password);
-        loginService.delUser(form.memberId, form.password);
         if (loginUser == null) {
             bindingResult.reject("loginFail", "아이디 혹은 비밀번호가 올바르지 않습니다.");
             return "login/loginForm";
         }
 
-        HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.LOGIN_MEMBER, loginUser);
+//        HttpSession session = request.getSession();
+//        session.setAttribute(SessionConst.LOGIN_MEMBER, loginUser);
+        authTokenService.generateToken(loginUser);
 
         return "redirect:" + redirectURL;
 
+    }
+    @GetMapping("/logout")
+    public String logout() {
+
+        return "login/loginForm";
     }
 
     @AllArgsConstructor

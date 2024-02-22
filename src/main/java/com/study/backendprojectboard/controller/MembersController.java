@@ -40,7 +40,7 @@ public class MembersController {
         // 서비스 Validation throw 처리
         List<FieldError> hasFieldErrors = null;
         if (!bindingResult.hasErrors()) {   // 바인딩에 문제가 없으면 가입 시도
-            hasFieldErrors = membersService.register(memberFormDTO);
+//            hasFieldErrors = membersService.register(memberFormDTO);
         }
 
         if (hasFieldErrors != null) { // validation에 문제가 있었으면 에러 추가
@@ -59,7 +59,7 @@ public class MembersController {
 
     @GetMapping("/edit/{id}")
     public String editMemberForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("member", membersService.findById(id));
+//        model.addAttribute("member", membersService.findById(id));
         return "members/editMemberForm";
     }
 
@@ -69,7 +69,7 @@ public class MembersController {
 
         List<FieldError> hasFieldErrors = null;
         if (!bindingResult.hasErrors()) {   // 바인딩에 문제가 없으면 업데이트 시도
-            hasFieldErrors = membersService.updateMember(id, memberFormDTO);
+//            hasFieldErrors = membersService.updateMember(id, memberFormDTO);
         }
 
         if (hasFieldErrors != null) {   // 업데이트 중 Validation에 문제가 있었으면 bindingResult에 추가
@@ -82,7 +82,7 @@ public class MembersController {
             return "members/editMemberForm";
         }
 
-        membersService.updateMember(id, memberFormDTO);
+//        membersService.updateMember(id, memberFormDTO);
         return "redirect:/members";
     }
 }
