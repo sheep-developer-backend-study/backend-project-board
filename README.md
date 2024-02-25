@@ -1,5 +1,65 @@
 ## 백엔드 프로젝트 #1 게시판
+# Spring Security With JWT Token
 
+---
+
+1. pom.xml library 추가
+```
+<!-- Spring Security with JWT Token Start  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <!-- Spring Security with JWT Token End  -->
+```
+
+2. 디렉토리 구조 생성
+- security/config
+- security/factory
+- security/filter
+- security/model
+- security/provider
+- security/manager
+- security/service
+- security/token
+- security/util
+
+3. SecurityConfig, Filter class 생성
+
+<br/>SecurityConfig 클래스 생성
+- @EnableWebSecurity 적용
+- @Bean SecurityFilterChain filterChain 등록
+
+
+<br/>JwtAuthenticateFilter 클래스 생성
+- @EnableWebSecurity 적용
+- @Bean SecurityFilterChain filterChain 등록
+
+
+4. Filter 동작 순서
+1. Header에서(Cookie) token을 갖고 온다
+2. 갖고 온 Token이 만료 됐는지 확인
+3. Token을 복호화 하여 UserContext로 변환
+4. UserContext 객체를 SecurityContext에 저장
+5. Controller에서 Authentication authentication 으로 UserContext 사용.
+
+---
 ### 학습 방법
 1. branch 생성: master -> {githubName}/{수업주제}-study e.g. sheep1500/backend-project-init-study
 2. 해당 브랜치로 checkout 후 학습 진행
@@ -70,5 +130,11 @@
 - 검색 기능 추가
 - 페이징 및 정렬 기능 구현
 - RESTful API 추가
+
+
+
+
+
+
 
 

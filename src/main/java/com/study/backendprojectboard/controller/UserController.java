@@ -4,6 +4,7 @@ import com.study.backendprojectboard.service.UserService;
 import com.study.backendprojectboard.user.dto.UserFormDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,11 @@ public class UserController {
 
     // 회원 목록
     @GetMapping("")
-    public String userList(Model model) {
+    public String userList(Model model, Authentication authentication) {
+        if (authentication == null) {
+            log.info("@@@ Not Login [{}]", authentication);
+            return "redirect:/login";
+        }
         log.info("userList() call");
         model.addAttribute("users", userService.findAll());
         return "members/memberList";

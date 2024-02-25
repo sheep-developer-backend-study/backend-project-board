@@ -24,9 +24,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-/**
- * @author {영문 이름}
- */
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -38,18 +36,16 @@ public class JwtAuthenticateFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String accessToken = authTokenService.getAccessTokenFromHttpHeader();
-        if (StringUtils.hasText(accessToken)) {
+        if (StringUtils.hasText(accessToken)
+                && jwtFactory.isValidateToken(accessToken)
+        ) {
             UserContext userContext = jwtFactory.getUserContextFromToken(accessToken);
             // 현재 SecurityContextHolder 에 인증객체가 있는지 확인
             if (userContext != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                // 토큰 유효여부 확인
-                if (!jwtFactory.isTokenExpired(accessToken)) {
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
+                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                    usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                }
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
 

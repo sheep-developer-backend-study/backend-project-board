@@ -4,7 +4,6 @@ import com.study.backendprojectboard.security.service.AuthTokenService;
 import com.study.backendprojectboard.service.LoginService;
 import com.study.backendprojectboard.user.model.User;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,6 @@ public class LoginController {
 
     private final LoginService loginService;
     private final AuthTokenService authTokenService;
-
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form, Authentication authentication) {
         if (authentication != null) {
